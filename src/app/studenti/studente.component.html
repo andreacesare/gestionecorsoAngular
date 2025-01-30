@@ -1,0 +1,17 @@
+<h1>Lista Studenti</h1>
+<ul>
+  @for(studente of studenti(); track studente.id){
+    <div class="row studente-item">
+      <div class="col">
+    <li>
+    {{studente.id+" "+studente.nome+" "+studente.cognome+" "+studente.matricola+" "+studente.data_nascita  }}
+    </li>
+      </div>
+      <div class="col">
+        <button type="button" (click)="onDelete(studente)">Elimina</button>
+      </div>
+    </div>
+  }
+</ul>
+<button routerLink="/studenti/new-studente">Aggiungi Studente</button>
+<router-outlet/>

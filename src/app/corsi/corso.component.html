@@ -1,0 +1,19 @@
+<h1>Lista Corsi</h1>
+<ul>
+@for (corso of corsi();track corso.id){
+  <div class="row corso-item">
+    <div class="col">
+  <li>
+    {{corso.id+" "+corso.nome+"  "+corso.durata+" "+corso.data_inizio+" "}}
+    @if (corso.docente){{{corso.docente.nome+" "+corso.docente.cognome}}}
+  </li>
+    </div>
+
+  <div class="col">
+  <button type="button" (click)="onCancel(corso)">Elimina</button>
+  </div>
+  </div>
+}
+</ul>
+<button routerLink="/corsi/new-corso">Aggiungi Corso</button>
+<router-outlet/>

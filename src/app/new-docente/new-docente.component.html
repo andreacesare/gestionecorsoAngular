@@ -1,0 +1,19 @@
+<form #form=ngForm (ngSubmit)="onSubmit(form)">
+  <div>
+    <label for="nome">Nome</label>
+    <input id="nome" type="text" [(ngModel)]="newDocente().nome" name="nome" />
+  </div>
+  <div>
+    <label for="cognome">Cognome</label>
+    <input id="cognome" type="text" [(ngModel)]="newDocente().cognome" name="cognome" required />
+  </div>
+  <div>
+    <button type="submit">Aggiungi</button>
+    <button type="button" (click)="onBack()">Annulla</button>
+  </div>
+  @if(form.submitted && !form.valid){
+    <div>
+      <p>Riempi tutto bro</p>
+    </div>
+  }
+</form>

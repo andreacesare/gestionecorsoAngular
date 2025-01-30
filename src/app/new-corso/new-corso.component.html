@@ -1,0 +1,30 @@
+<form #form=ngForm (ngSubmit)="onSubmit(form)">
+  <div>
+    <label for="nome">NomeCorso</label>
+    <input id="nome" type="text" [(ngModel)]="newCorso().nome" name="nome" required>
+  </div>
+  <div>
+    <label for="data">Data</label>
+    <input id="data" type="date" [(ngModel)]="newCorso().data_inizio" name="data" required>
+  </div>
+  <div>
+    <label for="durata">Durata Mesi</label>
+    <input id="durata" type="number" [(ngModel)]="newCorso().durata" name="durata" required>
+  </div>
+  <div>
+    <label for="docente">Docente</label>
+    <select id="docente" type="" [(ngModel)]="newCorso().docente" name="docente" required>
+      @for(docente of docenti();track docente.id){
+      <option [ngValue]="docente">{{docente.nome+" "+docente.cognome}}</option>
+      }
+    </select>
+  </div>
+  @if(form.submitted && !form.valid){
+    <div>
+      <p>Riempi tutto bro</p>
+    </div>
+  }
+  <button type="submit">Aggiungi</button>
+  <button type="button" (click)="onBack()">Indietro</button>
+</form>
+

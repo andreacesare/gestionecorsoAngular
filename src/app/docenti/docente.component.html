@@ -1,0 +1,18 @@
+<h1>Lista Docenti</h1>
+<ul>
+@for(docente of docenti();track docente.id){
+  <div class="row docente-item">
+    <div class="col">
+ <li >
+   {{docente.id+" "+docente.nome+" "+docente.cognome}}
+ </li>
+  </div>
+    <div class="col">
+      <button type="button" (click)="onCancel(docente)">Elimina</button>
+    </div>
+  </div>
+}
+</ul>
+<button routerLink="/docenti/new-docente">Aggiungi Docente</button>
+
+<router-outlet/>

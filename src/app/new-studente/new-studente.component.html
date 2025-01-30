@@ -1,0 +1,27 @@
+<form #form=ngForm (ngSubmit)="onSubmit(form)">
+  <div>
+    <label for="nome">NomeStudente</label>
+    <input id="nome" type="text" [(ngModel)]="newStudente().nome" name="nome" required>
+  </div>
+  <div>
+    <label for="cognome">CognomeStudente</label>
+    <input id="cognome" type="text" [(ngModel)]="newStudente().cognome" name="cognome" required>
+  </div>
+  <div>
+    <label for="matricola">Matricola</label>
+    <input id="matricola" type="text" [(ngModel)]="newStudente().matricola" name="matricola" required>
+  </div>
+  <div>
+    <label for="data_nascita">Data di nascita</label>
+    <input id="data_nascita" type="date" [(ngModel)]="newStudente().data_nascita" name="data_nascita" required>
+  </div>
+  @if(form.submitted && !form.valid){
+    <div>
+      <p>Riempi tutto bro</p>
+    </div>
+  }
+  <button type="submit">Aggiungi</button>
+  <button type="button" (click)="onBack()">Indietro</button>
+</form>
+
+
