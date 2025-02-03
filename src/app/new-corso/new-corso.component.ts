@@ -25,6 +25,7 @@ export class NewCorsoComponent implements OnInit {
       next:d=>this.docenti.set(d)
     });
   }
+
   onSubmit(form:NgForm){
     if(form.valid){
     console.log(this.newCorso());
@@ -32,6 +33,7 @@ export class NewCorsoComponent implements OnInit {
     this.route.navigate(['/corsi']);
    } else{console.log('error bro')}
     }
+
    onBack(){
     this.route.navigate(['/corsi']);
    }

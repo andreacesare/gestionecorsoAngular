@@ -12,8 +12,23 @@
   <div class="col">
   <button type="button" (click)="onCancel(corso)">Elimina</button>
   </div>
+    <div class="col">
+      <button [routerLink]="[{ outlets: { edit: ['up-corso', corso.id] } }]">Modifica Corso</button>
+
+    </div>
+
   </div>
 }
+
 </ul>
+<div class="row">
+<div class="col">
 <button routerLink="/corsi/new-corso">Aggiungi Corso</button>
 <router-outlet/>
+</div>
+<div class="col">
+  <div class=col>
+    <router-outlet name="edit"/>
+  </div>
+</div>
+</div>

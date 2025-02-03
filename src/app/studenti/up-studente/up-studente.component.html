@@ -1,0 +1,25 @@
+<form  (ngSubmit)="onSubmit()">
+  <p>Modifica {{studente().nome+" "+studente().cognome}}</p>
+  <div>
+    <label for="nome">NomeStudente</label>
+    <input id="nome" type="text" [(ngModel)]="upStudente().nome" name="nome">
+  </div>
+  <div>
+    <label for="cognome">CognomeStudente</label>
+    <input id="cognome" type="text" [(ngModel)]="upStudente().cognome" name="cognome">
+  </div>
+  <div>
+    <label for="matricola">Matricola</label>
+    <input id="matricola" type="text" [(ngModel)]="upStudente().matricola" name="matricola">
+  </div>
+  <div>
+    <label for="data_nascita">Data di nascita</label>
+    <input id="data_nascita" type="date" [(ngModel)]="upStudente().data_nascita" name="data_nascita">
+  </div>
+
+
+  <button type="submit">Modifica</button>
+  <button type="button" (click)="onBack()">Indietro</button>
+</form>
+
+

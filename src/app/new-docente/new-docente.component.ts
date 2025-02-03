@@ -13,22 +13,16 @@ import {DocenteService} from '../docenti/docente.service';
   templateUrl: './new-docente.component.html',
   styleUrl: './new-docente.component.css'
 })
-export class NewDocenteComponent implements OnInit {
+export class NewDocenteComponent  {
   private route=inject(Router);
   newDocente = signal<Docente>({} as Docente);
   private docenteService=inject(DocenteService);
-  docenti=signal<Docente[] >([]);
 
-  loadDocenti(){
-    this.docenteService.getAllDocenti().subscribe({next:d=>this.docenti.set(d)});
-  }
-  ngOnInit() { this.loadDocenti()}
+
 
   onSubmit(form:NgForm){
     if(form.valid) {
-      this.docenteService.saveDocente(this.newDocente()).subscribe({
-        next: d => this.docenti.set([...this.docenti(), d])
-      });
+      this.docenteService.saveDocente(this.newDocente()).subscribe();
 
       this.route.navigate(['/docenti']);
     }else{console.log('error bro')}

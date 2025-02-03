@@ -8,11 +8,22 @@
  </li>
   </div>
     <div class="col">
-      <button type="button" (click)="onCancel(docente)">Elimina</button>
+      <button type="button" (click)="onDelete(docente)">Elimina</button>
+    </div>
+
+    <div class="col">
+      <button [routerLink]="[{ outlets: { edit: ['up-docente', docente.id] } }]">Modifica Docente</button>
+
     </div>
   </div>
 }
 </ul>
+<div class=row>
+  <div class="col">
 <button routerLink="/docenti/new-docente">Aggiungi Docente</button>
-
 <router-outlet/>
+</div>
+  <div class=col>
+    <router-outlet name="edit"/>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<form #form=ngForm (ngSubmit)="onSubmit(form)">
+  <p>Modifica {{corso().nome}}</p>
+  <div>
+    <label for="nome">NomeCorso</label>
+    <input id="nome" type="text" [(ngModel)]="upCorso().nome" name="nome" >
+  </div>
+  <div>
+    <label for="data">Data</label>
+    <input id="data" type="date" [(ngModel)]="upCorso().data_inizio" name="data">
+  </div>
+  <div>
+    <label for="durata">Durata Mesi</label>
+    <input id="durata" type="number" [(ngModel)]="upCorso().durata" name="durata">
+  </div>
+  <div>
+    <label for="docente">Docente</label>
+    <select id="docente" type="" [(ngModel)]="upCorso().docente" name="docente">
+      @for(docente of docenti();track docente.id){
+        <option [ngValue]="docente">{{docente.nome+" "+docente.cognome}}</option>
+      }
+    </select>
+  </div>
+
+
+
+  <button type="submit">Modifica</button>
+  <button type="button" (click)="onBack()">Indietro</button>
+</form>
+
+

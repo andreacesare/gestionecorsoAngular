@@ -1,12 +1,9 @@
-.home-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
-}
 
-h1 {
-  font-size: 5rem;
-  font-weight: bold;
+
+header img {
+  max-width: 50%;
+  height: auto; /* Mantiene le proporzioni dell'immagine */
+  display: block;
+  margin: 50px auto; /* Centra l'immagine */
+  padding: 50px;
 }

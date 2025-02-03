@@ -4,14 +4,25 @@
     <div class="row studente-item">
       <div class="col">
     <li>
-    {{studente.id+" "+studente.nome+" "+studente.cognome+" "+studente.matricola+" "+studente.data_nascita  }}
+    {{studente.nome+" "+studente.cognome+" "+studente.matricola+" "+studente.data_nascita  }}
     </li>
       </div>
       <div class="col">
         <button type="button" (click)="onDelete(studente)">Elimina</button>
       </div>
+      <div class="col">
+
+        <button [routerLink]="[{ outlets: { edit: ['up-studente', studente.id] } }]">Modifica Studente</button>
+      </div>
     </div>
   }
 </ul>
+<div class="row">
+  <div class="col">
 <button routerLink="/studenti/new-studente">Aggiungi Studente</button>
 <router-outlet/>
+  </div>
+  <div class="col">
+    <router-outlet name="edit"/>
+  </div>
+</div>
