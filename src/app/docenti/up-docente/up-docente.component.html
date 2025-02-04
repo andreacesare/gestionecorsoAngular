@@ -1,5 +1,5 @@
 
-<form #form=ngForm (ngSubmit)="onSubmit(form)">
+<form  (ngSubmit)="onSubmit()">
   <p>Modifica {{docente().nome+" "+docente().cognome}}</p>
   <div>
     <label for="nome">Nome</label>
@@ -7,16 +7,12 @@
   </div>
   <div>
     <label for="cognome">Cognome</label>
-    <input id="cognome" type="text" [(ngModel)]="upDocente().cognome" name="cognome" required />
+    <input id="cognome" type="text" [(ngModel)]="upDocente().cognome" name="cognome"/>
   </div>
   <div>
     <button type="submit">Modifica</button>
     <button type="button" (click)="onBack()">Annulla</button>
   </div>
-  @if(form.submitted && !form.valid){
-    <div>
-      <p>Riempi tutto bro</p>
-    </div>
-  }
+
 </form>
 

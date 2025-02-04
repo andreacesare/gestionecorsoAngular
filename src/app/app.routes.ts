@@ -26,11 +26,17 @@ export const routes: Routes = [
       path:'new-docente',
       loadComponent:()=>import('./new-docente/new-docente.component').then(m=>m.NewDocenteComponent),
     },
+      ]
+  },
+  {
+   path:'docenti/docente/:id',
+   loadComponent:()=>import('./docenti/info-doc/info-doc.component').then(m => m.InfoDocComponent),
+    children:[
       {
-        path:'up-docente/:id',
+        path:'up-docente',
         loadComponent:()=>import('./docenti/up-docente/up-docente.component').then(m => m.UpDocenteComponent),
-        outlet:'edit',
-      }]
+      }
+    ]
   },
   {
     path:'studenti',

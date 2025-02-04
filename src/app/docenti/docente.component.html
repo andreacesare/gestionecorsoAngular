@@ -1,29 +1,23 @@
 <h1>Lista Docenti</h1>
 <ul>
 @for(docente of docenti();track docente.id){
-  <div class="row docente-item">
-    <div class="col">
+
  <li >
-   {{docente.id+" "+docente.nome+" "+docente.cognome}}
+   <div  class='special rounded border border' [routerLink]="['/docenti','docente',docente.id]">
+   {{docente.nome+" "+docente.cognome}}
+    </div>
  </li>
-  </div>
-    <div class="col">
-      <button type="button" (click)="onDelete(docente)">Elimina</button>
-    </div>
 
-    <div class="col">
-      <button [routerLink]="[{ outlets: { edit: ['up-docente', docente.id] } }]">Modifica Docente</button>
 
-    </div>
-  </div>
+
 }
 </ul>
+
 <div class=row>
   <div class="col">
-<button routerLink="/docenti/new-docente">Aggiungi Docente</button>
-<router-outlet/>
+<button class="rounded" routerLink="/docenti/new-docente">Aggiungi Docente</button>
 </div>
-  <div class=col>
-    <router-outlet name="edit"/>
+  <div class="col">
+    <router-outlet/>
   </div>
 </div>

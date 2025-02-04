@@ -1,7 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 
 
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(205, 99, 9,0.75);
+  color: rgb(0, 0, 0);
+  line-height: 1.6;
+}
+
+button{
+  background-color: rgba(145, 65, 0, 0.75);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+}
 button:hover {
-  background-color: #8c8b89;
+  background-color: #4d72cd;
+}
+.special:hover {
+  background-color: #4d72cd;
+}
+
+  li{
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+
+
+ul {
+  list-style-type: none; /* Rimuove i punti elenco */
+  padding: 0;
 }
 

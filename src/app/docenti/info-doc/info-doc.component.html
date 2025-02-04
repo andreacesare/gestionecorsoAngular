@@ -1,0 +1,33 @@
+<div id='card' class="col rounded border border">
+  <div class="row">
+    <p><strong>id:</strong> {{ docente().id }}</p>
+  </div>
+  <div class="row">
+    <p><strong>nome:</strong> {{ docente().nome }}</p>
+  </div>
+  <div class="row">
+    <p> <strong>cognome:</strong> {{ docente().cognome }}</p>
+  </div>
+  <div class="row">
+    <p><strong>corsi:</strong>
+    <span>
+    <ul style="margin-left: 40px" > @for (corso of docente().corsi; track corso.id)
+    { <li> {{ corso.nome }}</li>}
+    </ul>
+    </span>
+    </p>
+  </div>
+
+</div>
+
+<div class="col">
+  <button type="button" (click)="onBack()">Indietro</button>
+</div>
+    <div class="col">
+      <button class="rounded" type="button" (click)="onDelete(docente())">Elimina</button>
+    </div>
+
+    <div class="col">
+      <button class="rounded" [routerLink]="['up-docente']">Modifica Docente</button>
+    </div>
+<router-outlet/>
