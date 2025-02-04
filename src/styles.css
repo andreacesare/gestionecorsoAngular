@@ -18,6 +18,9 @@ button{
 button:hover {
   background-color: #4d72cd;
 }
+.active {
+  background-color: #4d72cd;
+}
 .special:hover {
   background-color: #4d72cd;
 }

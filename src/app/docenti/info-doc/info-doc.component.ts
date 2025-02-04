@@ -14,17 +14,14 @@ export class InfoDocComponent implements OnInit {
   private activeRoute=inject(ActivatedRoute);
   private route=inject(Router);
   private docenteService=inject(DocenteService);
-  docente=signal<Docente>({} as Docente);
+  docente=this.docenteService.docente.asReadonly();
   idDocente:number | null=null;
 
   ngOnInit() {
     const param=this.activeRoute.snapshot.paramMap.get('id');
     this.idDocente=param!=null?+param:null;
     if(this.idDocente!=null){
-      this.docenteService.getDocenteById(this.idDocente).subscribe({
-        next: d=>{this.docente.set(d);
-        console.log(this.docente());}
-      })
+      this.docenteService.getDocenteById(this.idDocente).subscribe()
 
     }
 

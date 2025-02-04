@@ -36,7 +36,7 @@ export class CorsoService {
     }));
   }
 
-  updateCorso(corso:Corso,corsoId:number | null){
+  updateCorso(corso:Corso,corsoId:number | undefined){
     return this.http.put<Corso>('http://localhost:8080/corso/updateCorso/'+corsoId,corso).pipe(tap(
       c=>this.http.get<Corso>('http://localhost:8080/corso/getCorsoById/'+c.id).subscribe(
         ()=>this.getAllCorsi().subscribe(c=>this.corsi.set(c))

@@ -26,7 +26,7 @@ export class UpDocenteComponent implements OnInit{
   }
 
   onBack(){
-    this.route.navigate(['/docenti']);
+    this.route.navigate(['/docenti/docente/'+this.docente().id]);
   }
 
 

@@ -1,34 +1,20 @@
 <h1>Lista Corsi</h1>
 <ul>
 @for (corso of corsi();track corso.id){
-  <div class="row corso-item">
-    <div class="col">
+
   <li>
-    {{corso.id+" "+corso.nome+"  "+corso.durata+" "+corso.data_inizio+" "}}
-    @if (corso.docente){{{corso.docente.nome+" "+corso.docente.cognome}}}
+    <div class="special rounded border border " [routerLink]="['/corsi','corso',corso.id]">
+      &nbsp;{{corso.nome}}
+    </div>
   </li>
-    </div>
-
-  <div class="col">
-  <button type="button" (click)="onCancel(corso)">Elimina</button>
-  </div>
-    <div class="col">
-      <button [routerLink]="[{ outlets: { edit: ['up-corso', corso.id] } }]">Modifica Corso</button>
-
-    </div>
-
-  </div>
 }
 
 </ul>
 <div class="row">
 <div class="col">
 <button routerLink="/corsi/new-corso">Aggiungi Corso</button>
-<router-outlet/>
 </div>
-<div class="col">
-  <div class=col>
-    <router-outlet name="edit"/>
-  </div>
+  <div class="col">
+  <router-outlet/>
 </div>
 </div>

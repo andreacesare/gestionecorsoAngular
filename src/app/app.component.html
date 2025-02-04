@@ -1,15 +1,15 @@
 <div class="row ">
 <div class="col  btn btn-lg ">
-  <button routerLink="/" class=" w-75 py-2 rounded d-block text-center">Home</button>
+  <button id="home" [ngClass]="{'active':isActive==='home'}" (click)="onClick('home')" routerLink="/" class=" w-75 py-2 rounded d-block text-center">Home</button>
 </div>
 <div class="col btn btn-lg">
-  <button routerLink="/corsi" class=" w-75  py-2 rounded d-block text-center">Corsi</button>
+  <button id="corsi" [ngClass]="{'active':isActive==='corsi'}" (click)="onClick('corsi')" routerLink="/corsi" class=" w-75  py-2 rounded d-block text-center">Corsi</button>
 </div>
   <div class="col btn btn-lg">
-  <button routerLink="/studenti" class="w-75 py-2 rounded d-block text-center">Studenti</button>
+  <button id="studenti" [ngClass]="{'active':isActive==='studenti'}" (click)="onClick('studenti')" routerLink="/studenti" class="w-75 py-2 rounded d-block text-center">Studenti</button>
   </div>
     <div class="col btn btn-lg">
-  <button routerLink="/docenti" class="w-75 py-2 rounded d-block text-center">Docenti</button>
+  <button id="docenti" [ngClass]="{'active':isActive==='docenti'}" (click)="onClick('docenti')" routerLink="/docenti" class="w-75 py-2 rounded d-block text-center">Docenti</button>
     </div>
 </div>
 

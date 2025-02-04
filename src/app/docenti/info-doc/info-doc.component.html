@@ -1,17 +1,17 @@
-<div id='card' class="col rounded border border">
+<div  class="col rounded border border">
   <div class="row">
-    <p><strong>id:</strong> {{ docente().id }}</p>
+    ;<p><strong>&nbsp;id:</strong> {{ docente().id }}</p>
   </div>
   <div class="row">
-    <p><strong>nome:</strong> {{ docente().nome }}</p>
+   <p><strong>&nbsp;nome:</strong> {{ docente().nome }}</p>
   </div>
   <div class="row">
-    <p> <strong>cognome:</strong> {{ docente().cognome }}</p>
+    <p> <strong>&nbsp;cognome:</strong> {{ docente().cognome }}</p>
   </div>
   <div class="row">
-    <p><strong>corsi:</strong>
+    <p><strong>&nbsp;corsi:</strong>
     <span>
-    <ul style="margin-left: 40px" > @for (corso of docente().corsi; track corso.id)
+    <ul > @for (corso of docente().corsi; track corso.id)
     { <li> {{ corso.nome }}</li>}
     </ul>
     </span>

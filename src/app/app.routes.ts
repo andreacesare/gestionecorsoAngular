@@ -11,11 +11,16 @@ export const routes: Routes = [
     children:[{
       path:'new-corso',
       loadComponent:()=>import('./new-corso/new-corso.component').then(m => m.NewCorsoComponent),
-    },{
-      path:'up-corso/:id',
-      loadComponent:()=>import('./corsi/up-corso/up-corso.component').then(m => m.UpCorsoComponent),
-      outlet:'edit',
-    }
+    },
+    ]
+  },{
+    path:'corsi/corso/:id',
+    loadComponent:()=>import('./corsi/info-corso/info-corso.component').then(m => m.InfoCorsoComponent),
+    children:[
+      {
+        path:'up-corso',
+        loadComponent:()=>import('./corsi/up-corso/up-corso.component').then(m => m.UpCorsoComponent),
+      }
     ]
   },
   {
@@ -45,12 +50,18 @@ export const routes: Routes = [
       path:'new-studente',
       loadComponent:()=>import('./new-studente/new-studente.component').then(m => m.NewStudenteComponent),
     },
+    ]
+  },
+  {
+    path:'studenti/studente/:id',
+    loadComponent:()=>import('./studenti/info-studente/info-studente.component').then(m => m.InfoStudenteComponent),
+    children:[
       {
-        path:'up-studente/:id',
+        path:'up-studente',
         loadComponent:()=>import('./studenti/up-studente/up-studente.component').then(m => m.UpStudenteComponent),
-        outlet:'edit',
+
       }
-      ]
+    ]
   },
   { path: '', redirectTo: '/docenti', pathMatch: 'full' }
 ];
