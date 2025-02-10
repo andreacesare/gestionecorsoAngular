@@ -17,6 +17,7 @@ export class AppComponent {
   title = 'gestioneCorsoFE';
 
   isActive:string=' ';
+
   onClick(button:string){
     this.isActive=button;
   }

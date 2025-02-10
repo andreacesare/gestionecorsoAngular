@@ -2,6 +2,7 @@ import {inject, Injectable, signal} from '@angular/core';
 import {Studente} from './studente.model';
 import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
+import {Corso} from '../corsi/corso.model';
 
 
 @Injectable({
@@ -41,7 +42,17 @@ export class StudenteService {
 
   updateStudente(studente:Studente,id:number | null){
     return this.http.put<Studente>('http://localhost:8080/discente/updateDiscente/'+id,studente).pipe(tap(
-      ()=>this.getAllStudenti().subscribe(s=>this.studenti.set(s))
+      ()=>{this.getAllStudenti().subscribe(s=>this.studenti.set(s))
+      this.getStudenteById(studente.id).subscribe(s=>this.studente.set(s))
+      }
     ))
   }
+
+  addCorso(corso:Corso,studente:Studente){
+    return this.http.post<Studente>('http://localhost:8080/discente/'+studente.id+'/addCorso/'+corso.id,corso).pipe(tap({
+      next:s=>this.studente.set(s)
+    }))
+  }
+
+
 }

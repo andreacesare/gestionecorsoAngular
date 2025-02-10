@@ -14,7 +14,7 @@
   </div>
   <div>
     <label for="docente">Docente</label>
-    <select id="docente" type="" [(ngModel)]="upCorso().docente" name="docente">
+    <select id="docente" [(ngModel)]="upCorso().docente" name="docente">
       @for(docente of docenti();track docente.id){
         <option [ngValue]="docente">{{docente.nome+" "+docente.cognome}}</option>
       }

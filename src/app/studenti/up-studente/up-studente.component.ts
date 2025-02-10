@@ -30,7 +30,7 @@ export class UpStudenteComponent implements OnInit {
   }
 
   onBack(){
-    this.route.navigate(['/studenti']);
+    this.route.navigate(['/studenti/studente/:id']);
 
   }
 
