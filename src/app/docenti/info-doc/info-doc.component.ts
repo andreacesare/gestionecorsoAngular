@@ -2,6 +2,8 @@ import {Component, inject, OnInit, signal} from '@angular/core';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import { Docente } from '../docente.model';
 import {DocenteService} from '../docente.service';
+import {MatDialog} from '@angular/material/dialog';
+import {UpDocenteComponent} from '../up-docente/up-docente.component';
 
 @Component({
   selector: 'app-info-doc',
@@ -16,6 +18,7 @@ export class InfoDocComponent implements OnInit {
   private docenteService=inject(DocenteService);
   docente=this.docenteService.docente.asReadonly();
   idDocente:number | null=null;
+  private dialog=inject(MatDialog);
 
   ngOnInit() {
     const param=this.activeRoute.snapshot.paramMap.get('id');
@@ -40,6 +43,10 @@ export class InfoDocComponent implements OnInit {
 
   onBack(){
     this.route.navigate(['docenti']);
+  }
+
+  openDialog(){
+    this.dialog.open(UpDocenteComponent,{data:this.docente()});
   }
 
 }

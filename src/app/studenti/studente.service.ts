@@ -41,11 +41,13 @@ export class StudenteService {
   }
 
   updateStudente(studente:Studente,id:number | null){
-    return this.http.put<Studente>('http://localhost:8080/discente/updateDiscente/'+id,studente).pipe(tap(
-      ()=>{this.getAllStudenti().subscribe(s=>this.studenti.set(s))
-      this.getStudenteById(studente.id).subscribe(s=>this.studente.set(s))
-      }
-    ))
+
+    return this.http.put<Studente>('http://localhost:8080/discente/updateDiscente/'+id,studente).pipe(tap({
+    next:()=>
+    {
+      this.getStudenteById(id).subscribe({next:s => this.studente.set(s)});
+    }
+  }))
   }
 
   addCorso(corso:Corso,studente:Studente){

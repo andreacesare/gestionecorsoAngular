@@ -1,48 +1,44 @@
-<div id='card' class="col rounded border border">
-  <div class="row">
-    <p><strong>&nbsp;id:</strong> {{ corso().id }}</p>
-  </div>
-  <div class="row">
-    <p><strong>&nbsp;nome:</strong> {{ corso().nome }}</p>
-  </div>
-  <div class="row">
-    <p> <strong>&nbsp;data:</strong> {{ corso().data_inizio}}</p>
-  </div>
-  <div class="row">
-    <p> <strong>&nbsp;durata:</strong> {{ corso().durata}}</p>
-  </div>
-  <div class="row">
-    <p> <strong>&nbsp;docente:</strong>
-      @if(corso().docente!=null){
-      {{ corso().docente.nome+" "+corso().docente.cognome}}}</p>
-  </div>
-  <div class="row">
-
-    <p> <strong>&nbsp;studenti:</strong>
-    <span>
-      <ul>
-      @for(studente of corso().discenti;track studente.id){
-       <li> {{ studente.matricola+" "+studente.nome+" "+studente.cognome}}</li>
-      }
-    </ul>
-    </span>
-    </p>
-  </div>
-
-  </div>
-<div class="row">
-  <div class="col">
-<div class="col">
-  <button (click)="onBack()">Indietro</button>
-</div>
-  <div class="col">
-  <button type="button" (click)="onDelete(corso())">Elimina</button>
-  </div>
-    <div class="col">
-      <button [routerLink]=" ['up-corso'] ">Modifica Corso</button>
+<div class="container mt-4">
+  <div class="col rounded border border p-4 bg-light shadow-lg">
+    <div class="row mb-3">
+      <p class="mb-1"><strong>id:</strong> {{ corso().id }}</p>
     </div>
-</div>
-  <div class="col">
-<router-outlet/>
-</div>
+    <div class="row mb-3">
+      <p class="mb-1"><strong>Nome:</strong> {{ corso().nome }}</p>
+    </div>
+    <div class="row mb-3">
+      <p class="mb-1"><strong>Data Inizio:</strong> {{ corso().data_inizio | date:"dd/MM/yyyy"}}</p>
+    </div>
+    <div class="row mb-3">
+      <p class="mb-1"><strong>Durata:</strong> {{ corso().durata }}</p>
+    </div>
+    @if(corso().docente!=null){
+    <div class="row mb-3">
+      <p class="mb-1"><strong>Docente:</strong> {{ corso().docente.nome+" "+corso().docente.cognome }}</p>
+    </div>
+    }
+    <div class="row mb-3">
+      <p class="mb-1"><strong>Studenti:</strong></p>
+      <ul class="list-group">
+        @for (studente of corso().discenti; track studente.id)
+        {
+          <li class="list-group-item">{{ studente.nome+" "+studente.cognome }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary rounded" (click)="onBack()">Indietro</button>
+      <button class="btn btn-danger rounded" type="button" (click)="onDelete(corso())">Elimina</button>
+      <button class="btn btn-primary rounded" (click)="openDialog()">Modifica Corso</button>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

@@ -1,18 +1,23 @@
+<div class="container mt-4">
+  <form #form="ngForm" (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-lg bg-light">
+    <h3 class="text-center mb-4">Modifica {{data.nome+" "+data.cognome}}</h3>
 
-<form  (ngSubmit)="onSubmit()">
-  <p>Modifica {{docente().nome+" "+docente().cognome}}</p>
-  <div>
-    <label for="nome">Nome</label>
-    <input id="nome" type="text" [(ngModel)]="upDocente().nome" name="nome" />
-  </div>
-  <div>
-    <label for="cognome">Cognome</label>
-    <input id="cognome" type="text" [(ngModel)]="upDocente().cognome" name="cognome"/>
-  </div>
-  <div>
-    <button type="submit">Modifica</button>
-    <button type="button" (click)="onBack()">Annulla</button>
-  </div>
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input id="nome" type="text" class="form-control" [(ngModel)]="upDocente().nome" name="nome" placeholder="Modifica il nome" />
+    </div>
 
-</form>
+    <div class="mb-3">
+      <label for="cognome" class="form-label">Cognome</label>
+      <input id="cognome" type="text" class="form-control" [(ngModel)]="upDocente().cognome" name="cognome"  placeholder="Modifica il cognome" />
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary">Modifica</button>
+      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Annulla</button>
+    </div>
+
+
+  </form>
+</div>
 

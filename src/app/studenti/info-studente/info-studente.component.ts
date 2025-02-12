@@ -1,17 +1,22 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, signal, ViewChild} from '@angular/core';
 import {StudenteService} from '../studente.service';
 import {ActivatedRoute, Router, RouterModule, RouterOutlet} from '@angular/router';
 import {Studente} from '../studente.model';
 import {FormsModule} from '@angular/forms';
 import {CorsoService} from '../../corsi/corso.service';
 import {Corso} from '../../corsi/corso.model';
+import {DatePipe} from "@angular/common";
+import {MatDialog} from '@angular/material/dialog';
+import {UpDocenteComponent} from '../../docenti/up-docente/up-docente.component';
+import {UpStudenteComponent} from '../up-studente/up-studente.component';
+import {CorsoComponent} from '../../corsi/corso.component';
 
 @Component({
   selector: 'app-info-studente',
   standalone: true,
-  imports: [
-    RouterOutlet, RouterModule, FormsModule
-  ],
+    imports: [
+        RouterOutlet, RouterModule, FormsModule, DatePipe
+    ],
   templateUrl: './info-studente.component.html',
   styleUrl: './info-studente.component.css'
 })
@@ -25,6 +30,8 @@ export class InfoStudenteComponent implements OnInit {
   id:number | null=null;
   clicked=false;
   corso:Corso={} as Corso;
+  private dialog=inject(MatDialog);
+  @ViewChild('myDialog') dialogRef!: ElementRef<HTMLDialogElement>;
 
   ngOnInit() {
     const param=this.activeRoute.snapshot.paramMap.get('id');
@@ -53,18 +60,25 @@ export class InfoStudenteComponent implements OnInit {
   }
 
   onBack(){
-    this.clicked=false;
+    this.route.navigate(['studenti']);
   }
 
-  onBackRoute(){
-    this.route.navigate(['/studenti']);
+  openDialog(){
+    this.dialog.open(UpStudenteComponent,{data:this.studente()});
   }
 
-  onClick(){this.clicked=true;}
+  dialogCorsi(){
+    this.dialogRef.nativeElement.showModal();
+  }
+
+  closeDialog(){
+    this.dialogRef.nativeElement.close();
+  }
+
 
   onSubmit(){
     this.studenteService.addCorso(this.corso,this.studente()).subscribe({});
-    this.clicked=false;
+    this.dialogRef.nativeElement.close();
   }
 
 

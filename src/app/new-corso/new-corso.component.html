@@ -1,30 +1,40 @@
-<form #form=ngForm (ngSubmit)="onSubmit(form)">
-  <div>
-    <label for="nome">NomeCorso</label>
-    <input id="nome" type="text" [(ngModel)]="newCorso().nome" name="nome" required>
+<div class="container mt-4" >
+<form #form=ngForm (ngSubmit)="onSubmit(form)" class="p-4 border rounded shadow-lg bg-light">
+
+    <h3 class="text-center mb-4">Aggiungi Corso</h3>
+
+    <div class="mb-3">
+    <label for="nome" class="form-label">NomeCorso</label>
+    <input id="nome" type="text" class="form-control" [(ngModel)]="newCorso().nome" name="nome" placeholder="Inserisci Nome" required>
   </div>
-  <div>
-    <label for="data">Data</label>
-    <input id="data" type="date" [(ngModel)]="newCorso().data_inizio" name="data" required>
+
+  <div class="mb-4">
+    <label for="data" class="form-label">Data</label>
+    <input id="data" type="date" class="form-control" [(ngModel)]="newCorso().data_inizio" name="data" placeholder="Inserisci Cognome" required>
   </div>
-  <div>
-    <label for="durata">Durata Mesi</label>
-    <input id="durata" type="number" [(ngModel)]="newCorso().durata" name="durata" required>
+
+  <div class="mb-4">
+    <label for="durata" class="form-label">Durata Mesi</label>
+    <input id="durata" type="text" class="form-control" [(ngModel)]="newCorso().durata" name="durata" placeholder="Inserisci Durata" required>
   </div>
-  <div>
-    <label for="docente">Docente</label>
-    <select id="docente" type="" [(ngModel)]="newCorso().docente" name="docente" required>
+
+  <div class="mb-4">
+    <label for="docente" class="form-label">Docente</label>
+    <select id="docente" class="form-control form-select" [(ngModel)]="newCorso().docente" name="docente"   required>
       @for(docente of docenti();track docente.id){
       <option [ngValue]="docente">{{docente.nome+" "+docente.cognome}}</option>
       }
     </select>
   </div>
-  @if(form.submitted && !form.valid){
-    <div>
-      <p>Riempi tutto bro</p>
-    </div>
-  }
-  <button type="submit">Aggiungi</button>
-  <button type="button" (click)="onBack()">Indietro</button>
-</form>
 
+  @if(form.submitted && !form.valid) {
+  <div class="alert alert-danger mt-3" role="alert">
+    Compila tutti i campi obbligatori, per favore.
+  </div>
+}
+  <div class="d-flex justify-content-between">
+  <button type="submit" class="btn btn-primary">Aggiungi</button>
+  <button type="button" class="btn btn-secondary" (click)="onBack()">Indietro</button>
+</div>
+</form>
+</div>

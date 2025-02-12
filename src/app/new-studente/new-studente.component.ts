@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {FormsModule, NgForm} from '@angular/forms';
 import {Studente} from '../studenti/studente.model';
 import {StudenteService} from '../studenti/studente.service';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-studente',
@@ -14,16 +15,16 @@ import {StudenteService} from '../studenti/studente.service';
 export class NewStudenteComponent {
   newStudente=signal<Studente>({} as Studente);
   private studenteService=inject(StudenteService);
-  private route=inject(Router);
+  private dialogRef=inject(MatDialogRef);
 
   onSubmit(form: NgForm){
-    console.log(form.value);
+    if(form.valid) {
     this.studenteService.saveStudente(this.newStudente()).subscribe();
-    this.route.navigate(['/studenti']);
-  }
+    this.dialogRef.close();
+  }}
 
   onBack(){
-    this.route.navigate(['/studenti']);
+    this.dialogRef.close();
   }
 
 }

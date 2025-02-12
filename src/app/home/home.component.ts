@@ -9,6 +9,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
   @ViewChild('myDialog') dialogRef!: ElementRef<HTMLDialogElement>;
 
   openDialog() {

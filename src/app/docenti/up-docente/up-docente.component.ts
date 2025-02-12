@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import {Docente} from '../docente.model';
 import {DocenteService} from '../docente.service';
 import {FormsModule} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-up-docente',
@@ -15,18 +16,21 @@ export class UpDocenteComponent implements OnInit{
   private route=inject(Router);
   private docenteService=inject(DocenteService);
   upDocente = signal<Docente>({} as Docente);
-  docente=this.docenteService.docente.asReadonly();
+  docente=this.docenteService.docente;
+  private dialog=inject(MatDialogRef);
+  public data=inject(MAT_DIALOG_DATA);
 
   ngOnInit(){}
 
   onSubmit(){
       this.docenteService.updateDocente(this.upDocente(),this.docente().id).subscribe({
-        next:()=>this.route.navigate(['/docenti'])
+        next:()=>{this.docenteService.getDocenteById(this.docente().id).subscribe(docente=>{this.docente.set(docente)});
+        this.dialog.close();}
       });
   }
 
-  onBack(){
-    this.route.navigate(['/docenti/docente/'+this.docente().id]);
+  closeDialog(){
+    this.dialog.close();
   }
 
 

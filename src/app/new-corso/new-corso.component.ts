@@ -5,6 +5,7 @@ import {FormsModule, NgForm} from '@angular/forms';
 import {DocenteService} from '../docenti/docente.service';
 import {Docente} from '../docenti/docente.model';
 import {CorsoService} from '../corsi/corso.service';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-corso',
@@ -19,6 +20,7 @@ export class NewCorsoComponent implements OnInit {
   private corsoService=inject(CorsoService);
   newCorso=signal<Corso>({} as Corso);
   docenti=signal<Docente[]>([]);
+  private dialogRef=inject(MatDialogRef<NewCorsoComponent>);
 
   ngOnInit() {
     this.docenteService.getAllDocenti().subscribe({
@@ -29,12 +31,12 @@ export class NewCorsoComponent implements OnInit {
   onSubmit(form:NgForm){
     if(form.valid){
     console.log(this.newCorso());
-    this.corsoService.saveCorso(this.newCorso()).subscribe();
-    this.route.navigate(['/corsi']);
+    this.corsoService.saveCorso(this.newCorso()).subscribe({next:()=>console.log(this.newCorso())});
+    this.dialogRef.close();
    } else{console.log('error bro')}
     }
 
    onBack(){
-    this.route.navigate(['/corsi']);
+    this.dialogRef.close();
    }
 }

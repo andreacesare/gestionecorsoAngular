@@ -1,9 +1,10 @@
-import {Component, DestroyRef, inject, OnInit, signal} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Docente} from './docente.model';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {DocenteService} from './docente.service';
 import {UpDocenteComponent} from './up-docente/up-docente.component';
+import {NewDocenteComponent} from '../new-docente/new-docente.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-docente',
@@ -11,7 +12,8 @@ import {UpDocenteComponent} from './up-docente/up-docente.component';
   imports: [
     RouterLink,
     RouterOutlet,
-    UpDocenteComponent
+    UpDocenteComponent,
+    NewDocenteComponent,
   ],
   templateUrl: './docente.component.html',
   styleUrl: './docente.component.css'
@@ -21,11 +23,16 @@ export class DocenteComponent implements OnInit{
   private docenteService=inject(DocenteService);
   docenti=this.docenteService.docenti.asReadonly();
 
+  private dialog=inject(MatDialog);
 
   ngOnInit() {
     const sub=this.docenteService.getAllDocenti().subscribe();
     this.destroy.onDestroy(()=>sub.unsubscribe());
 
+  }
+
+  openDialog(){
+    this.dialog.open(NewDocenteComponent, {})
   }
 
 

@@ -26,12 +26,7 @@ export const routes: Routes = [
   {
     path:'docenti',
     loadComponent:()=>import('./docenti/docente.component').then(m => m.DocenteComponent),
-    children:[
-      {
-      path:'new-docente',
-      loadComponent:()=>import('./new-docente/new-docente.component').then(m=>m.NewDocenteComponent),
-    },
-      ]
+     children:[]
   },
   {
    path:'docenti/docente/:id',

@@ -1,30 +1,38 @@
-<form (ngSubmit)="onSubmit()">
-  <p>Modifica {{corso().nome}}</p>
-  <div>
-    <label for="nome">NomeCorso</label>
-    <input id="nome" type="text" [(ngModel)]="upCorso().nome" name="nome" >
-  </div>
-  <div>
-    <label for="data">Data</label>
-    <input id="data" type="date" [(ngModel)]="upCorso().data_inizio" name="data">
-  </div>
-  <div>
-    <label for="durata">Durata Mesi</label>
-    <input id="durata" type="number" [(ngModel)]="upCorso().durata" name="durata">
-  </div>
-  <div>
-    <label for="docente">Docente</label>
-    <select id="docente" [(ngModel)]="upCorso().docente" name="docente">
-      @for(docente of docenti();track docente.id){
-        <option [ngValue]="docente">{{docente.nome+" "+docente.cognome}}</option>
-      }
-    </select>
-  </div>
+<div class="container mt-4" >
+  <form #form=ngForm (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-lg bg-light">
+
+    <h3 class="text-center mb-4">Modifica {{corso().nome}}</h3>
+
+    <div class="mb-3">
+      <label for="nome" class="form-label">NomeCorso</label>
+      <input id="nome" type="text" class="form-control" [(ngModel)]="upCorso().nome" name="nome" placeholder="Modifica Nome" >
+    </div>
+
+    <div class="mb-4">
+      <label for="data" class="form-label">Data</label>
+      <input id="data" type="date" class="form-control" [(ngModel)]="upCorso().data_inizio" name="data" placeholder="Modifica data d'inizio" >
+    </div>
+
+    <div class="mb-4">
+      <label for="durata" class="form-label">Durata Mesi</label>
+      <input id="durata" type="text" class="form-control" [(ngModel)]="upCorso().durata" name="durata" placeholder="Modifica durata">
+    </div>
+
+    <div class="mb-4">
+      <label for="docente" class="form-label">Docente</label>
+      <select id="docente" class="form-control form-select" [(ngModel)]="upCorso().docente" name="docente">
+        @for(docente of docenti();track docente.id){
+          <option [ngValue]="docente">{{docente.nome+" "+docente.cognome}}</option>
+        }
+
+      </select>
+    </div>
 
 
 
-  <button type="submit">Modifica</button>
-  <button type="button" (click)="onBack()">Annulla</button>
-</form>
-
-
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary">Modifica</button>
+      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Indietro</button>
+    </div>
+  </form>
+</div>

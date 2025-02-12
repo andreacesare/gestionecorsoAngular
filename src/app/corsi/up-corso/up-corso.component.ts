@@ -3,13 +3,15 @@ import {CorsoService} from '../corso.service';
 import {FormsModule} from '@angular/forms';
 import {Corso} from '../corso.model';
 import {DocenteService} from '../../docenti/docente.service';
-import { Router} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {Docente} from '../../docenti/docente.model';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-up-corso',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, DatePipe, RouterOutlet],
   templateUrl: './up-corso.component.html',
   styleUrl: './up-corso.component.css'
 })
@@ -20,6 +22,8 @@ export class UpCorsoComponent implements OnInit {
   private docenteService=inject(DocenteService);
   docenti=signal<Docente[]>([]);
   corso=this.corsoService.corso.asReadonly();
+  private dialog=inject(MatDialogRef);
+  public data=inject(MAT_DIALOG_DATA);
 
   ngOnInit() {
     this.docenteService.getAllDocenti().subscribe({
@@ -30,13 +34,17 @@ export class UpCorsoComponent implements OnInit {
 
   onSubmit(){
     this.corsoService.updateCorso(this.upCorso(),this.corso().id).subscribe({
-      next:()=>this.route.navigate(['/corsi'])
+      next:()=>this.dialog.close()
     });
 
   }
 
   onBack(){
     this.route.navigate(['/corsi/corso/'+this.corso().id]);
+  }
+
+  closeDialog(){
+    this.dialog.close();
   }
 
 }

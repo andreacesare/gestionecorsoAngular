@@ -1,25 +1,37 @@
-<form  (ngSubmit)="onSubmit()">
-  <p>Modifica {{studente().nome+" "+studente().cognome}}</p>
-  <div>
-    <label for="nome">NomeStudente</label>
-    <input id="nome" type="text" [(ngModel)]="upStudente().nome" name="nome">
-  </div>
-  <div>
-    <label for="cognome">CognomeStudente</label>
-    <input id="cognome" type="text" [(ngModel)]="upStudente().cognome" name="cognome">
-  </div>
-  <div>
-    <label for="matricola">Matricola</label>
-    <input id="matricola" type="text" [(ngModel)]="upStudente().matricola" name="matricola">
-  </div>
-  <div>
-    <label for="data_nascita">Data di nascita</label>
-    <input id="data_nascita" type="date" [(ngModel)]="upStudente().data_nascita" name="data_nascita">
-  </div>
+<div class="container mt-4" >
+  <form #form=ngForm (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-lg bg-light">
+    <h3 class="text-center mb-4">Modifica {{studente().nome+" "+studente().cognome}}</h3>
+
+    <div class="mb-3">
+      <label for="nome">NomeStudente</label>
+      <input id="nome" type="text" class="form-control" [(ngModel)]="upStudente().nome" name="nome" placeholder="Modifica Nome">
+    </div>
+
+    <div class="mb-3">
+      <label for="cognome">CognomeStudente</label>
+      <input id="cognome" type="text" class="form-control" [(ngModel)]="upStudente().cognome" name="cognome" placeholder="Modifica Cognome" >
+    </div>
+
+    <div class="mb-3">
+      <label for="matricola">Matricola</label>
+      <input id="matricola" type="text" class="form-control" [(ngModel)]="upStudente().matricola" name="matricola" placeholder="Modifica Matricola" >
+    </div>
+
+    <div class="mb-3">
+      <label for="data_nascita">Data di nascita</label>
+      <input id="data_nascita" type="date" class="form-control" [(ngModel)]="upStudente().data_nascita" name="data_nascita" placeholder="Modifica Data di Nascita" >
+    </div>
 
 
-  <button type="submit">Modifica</button>
-  <button type="button" (click)="onBack()">Indietro</button>
-</form>
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary">Modifica</button>
+      <button type="button" class="btn btn-secondary" (click)="onBack()">Indietro</button>
+    </div>
+  </form>
+</div>
+
+
+
+
 
 
