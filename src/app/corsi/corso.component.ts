@@ -21,14 +21,12 @@ export class CorsoComponent implements OnInit {
   private corsoService = inject(CorsoService);
   corsi = this.corsoService.corsi.asReadonly();
   private dialog=inject(MatDialog);
-  corsiFiltrati=signal<Corso[]>([]);
+  corsiFiltrati=this.corsoService.corsiFiltrati;
   corsoCercato='';
   data='';
 
   ngOnInit() {
-    const sub = this.corsoService.getAllCorsi().subscribe({
-      next:c=>this.corsiFiltrati.set(c)
-    });
+    const sub = this.corsoService.getAllCorsi().subscribe();
     this.destroy.onDestroy(() => sub.unsubscribe())
 
   }

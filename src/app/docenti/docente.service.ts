@@ -11,18 +11,23 @@ export class DocenteService {
   private http=inject(HttpClient);
   docenti=signal<Docente[]>([]);
   docente=signal<Docente>({} as Docente);
+  docentiFiltrati=signal<Docente[]>([]);
 
 
   getAllDocenti(){
     return this.http.get<Docente[]>("http://localhost:8080/docente").pipe(tap({
-      next:d=>this.docenti.set(d)
+      next:d=> {
+        this.docenti.set(d);
+        this.docentiFiltrati.set(d);
+      }
     }));
   }
 
   saveDocente(docente:Docente):Observable<Docente> {
     return  this.http.post<Docente>('http://localhost:8080/docente/saveDocente',docente).pipe(tap(
       savedoc=>{this.http.get<Docente>('http://localhost:8080/docente/getDocenteById/'+savedoc.id).subscribe(
-      retdoc=>this.docenti.update(d=>[...d,retdoc])
+      retdoc=>{this.docenti.update(d=>[...d,retdoc]);
+      this.docentiFiltrati.set(this.docenti())}
     )
     }))
   }

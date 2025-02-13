@@ -11,18 +11,25 @@ import {Corso} from '../corsi/corso.model';
 export class StudenteService {
   studenti=signal<Studente[]>([]);
   studente=signal<Studente>({} as Studente);
+  studentiFiltrati=signal<Studente[]>([]);
   private http=inject(HttpClient);
 
   getAllStudenti(){
     return this.http.get<Studente[]>('http://localhost:8080/discente').pipe(tap({
-      next:s=>this.studenti.set(s)
+      next:s=> {
+        this.studenti.set(s);
+        this.studentiFiltrati.set(s);
+      }
     }))
   }
 
   saveStudente(studente:Studente){
     return this.http.post<Studente>('http://localhost:8080/discente/saveDiscente',studente).pipe(tap(
       savedS=>this.http.get<Studente>('http://localhost:8080/discente/getDiscenteById/'+savedS.id).subscribe(
-        updateS=>this.studenti.update(s=>[...s,updateS])
+        updateS=>{this.studenti.update(s=>[...s,updateS]);
+        this.studentiFiltrati.set(this.studenti())
+        }
+
       ))
     )
   }

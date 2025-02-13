@@ -11,16 +11,20 @@ export class CorsoService {
   private http=inject(HttpClient);
   corsi = signal<Corso[]>([]);
   corso=signal<Corso>({} as Corso);
+  corsiFiltrati=signal<Corso[]>([]);
 
   getAllCorsi(){
     return this.http.get<Corso[]>("http://localhost:8080/corso").pipe(tap({
-      next:d=>this.corsi.set(d)
+      next:d=>{this.corsi.set(d);
+        this.corsiFiltrati.set(d);}
     }));
   }
 
   saveCorso(corso:Corso){
     return this.http.post<Corso>("http://localhost:8080/corso/saveCorso", corso).pipe(tap({
-      next:c=>this.corsi.update(d=>[...d,c])
+      next:c=> {
+        this.corsi.update(d => [...d, c]);
+      this.corsiFiltrati.set(this.corsi());}
     }));
   }
 

@@ -21,14 +21,12 @@ export class StudenteComponent implements OnInit{
   studenti=this.studenteService.studenti.asReadonly();
   private dialog=inject(MatDialog);
   studenteCercato='';
-  studentiFiltrati=signal<Studente[]>([]);
+  studentiFiltrati=this.studenteService.studentiFiltrati;
   matricola='';
 
 
   ngOnInit() {
-    const sub=this.studenteService.getAllStudenti().subscribe({
-      next:s=>this.studentiFiltrati.set(s)
-    });
+    const sub=this.studenteService.getAllStudenti().subscribe();
     this.destroy.onDestroy(()=>sub.unsubscribe());
   }
 

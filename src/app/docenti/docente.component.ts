@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnInit, signal} from '@angular/core';
+import {Component, computed, DestroyRef, inject, OnInit, signal} from '@angular/core';
 
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {DocenteService} from './docente.service';
@@ -7,6 +7,7 @@ import {NewDocenteComponent} from '../new-docente/new-docente.component';
 import {MatDialog} from '@angular/material/dialog';
 import {FormsModule} from '@angular/forms';
 import {Docente} from './docente.model';
+import {Studente} from '../studenti/studente.model';
 
 @Component({
   selector: 'app-docente',
@@ -26,15 +27,13 @@ export class DocenteComponent implements OnInit{
   private docenteService=inject(DocenteService);
   docenti=this.docenteService.docenti.asReadonly();
   docCercato='';
-  docentiFiltrati=signal<Docente[]>([]);
+  docentiFiltrati=this.docenteService.docentiFiltrati;
 
   private dialog=inject(MatDialog);
 
 
   ngOnInit() {
-    const sub=this.docenteService.getAllDocenti().subscribe({
-      next:d=>this.docentiFiltrati.set(d)
-    });
+    const sub=this.docenteService.getAllDocenti().subscribe();
     this.destroy.onDestroy(()=>sub.unsubscribe());
 
   }
@@ -45,7 +44,7 @@ export class DocenteComponent implements OnInit{
 
   searchDocente(){
     this.docentiFiltrati.set(this.docenti().filter(d=>d.nome.toLowerCase().includes(this.docCercato.toLowerCase())
-    || d.cognome.toLowerCase().includes(this.docCercato.toLowerCase())));
+      || d.cognome.toLowerCase().includes(this.docCercato.toLowerCase())));
   }
 }
 
