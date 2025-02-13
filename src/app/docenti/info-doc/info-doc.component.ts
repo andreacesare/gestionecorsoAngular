@@ -4,6 +4,8 @@ import { Docente } from '../docente.model';
 import {DocenteService} from '../docente.service';
 import {MatDialog} from '@angular/material/dialog';
 import {UpDocenteComponent} from '../up-docente/up-docente.component';
+import {CorsoService} from '../../corsi/corso.service';
+
 
 @Component({
   selector: 'app-info-doc',
@@ -16,7 +18,10 @@ export class InfoDocComponent implements OnInit {
   private activeRoute=inject(ActivatedRoute);
   private route=inject(Router);
   private docenteService=inject(DocenteService);
+  private corsoService=inject(CorsoService);
   docente=this.docenteService.docente.asReadonly();
+  corsi=this.corsoService.corsi.asReadonly();
+
   idDocente:number | null=null;
   private dialog=inject(MatDialog);
 
@@ -27,7 +32,6 @@ export class InfoDocComponent implements OnInit {
       this.docenteService.getDocenteById(this.idDocente).subscribe()
 
     }
-
   }
 
   onDelete(docente:Docente){

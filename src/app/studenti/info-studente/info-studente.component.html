@@ -31,14 +31,15 @@
     <div class="col d-flex justify-content-between">
       <button type="button" class="btn btn-secondary rounded" (click)="onBack()">Indietro</button>
       <button class="btn btn-danger rounded" type="button" (click)="onDelete(studente())">Elimina</button>
-      <button class="btn btn-success rounded" (click)="dialogCorsi()">Iscrivi a corso</button>
+      <button class="btn btn-warning rounded" (click)="openRemoveDialog()">Rimuovi corso</button>
+      <button class="btn btn-success rounded" (click)="openAddDialog()">Iscrivi a corso</button>
       <button class="btn btn-primary rounded" (click)="openDialog()">Modifica Studente</button>
     </div>
   </div>
 </div>
 
-  <dialog #myDialog class="modal-lg">
-    <form (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-lg bg-light">
+  <dialog #addDialog class="modal-lg">
+    <form (ngSubmit)="addCorso()" class="p-4 border rounded shadow-lg bg-light">
     <div class="mb-4">
       <label for="corso" class="form-label">Corsi Disponibili</label>
       <select id="corso" class="form-control form-select" [(ngModel)]="corso" name="docente"   required>
@@ -49,8 +50,25 @@
     </div>
       <div class="d-flex justify-content-between">
         <button type="submit" class="btn btn-primary">Iscrivi</button>
-        <button type="button" class="btn btn-secondary" (click)="closeDialog()">Indietro</button>
+        <button type="button" class="btn btn-secondary" (click)="closeAddDialog()">Indietro</button>
       </div>
     </form>
   </dialog>
+
+<dialog #removeDialog class="modal-lg">
+  <form (ngSubmit)="removeCorso()" class="p-4 border rounded shadow-lg bg-light">
+    <div class="mb-4">
+      <label for="corso2" class="form-label">Corsi Seguiti</label>
+      <select id="corso2" class="form-control form-select" [(ngModel)]="corso" name="docente"   required>
+        @for(corso of studente().corsi;track corso.id){
+          <option [ngValue]="corso">{{corso.id+" "+corso.nome+" "+(corso.data_inizio | date:"dd/MM/yyyy")}}</option>
+        }
+      </select>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary">Rimuovi</button>
+      <button type="button" class="btn btn-secondary" (click)="closeRemoveDialog()">Indietro</button>
+    </div>
+  </form>
+</dialog>
 

@@ -28,18 +28,15 @@ export class InfoStudenteComponent implements OnInit {
   studente=this.studenteService.studente.asReadonly();
   corsi=signal<Corso[]>([]);
   id:number | null=null;
-  clicked=false;
   corso:Corso={} as Corso;
   private dialog=inject(MatDialog);
-  @ViewChild('myDialog') dialogRef!: ElementRef<HTMLDialogElement>;
-
+  @ViewChild('addDialog') addDialog!: ElementRef<HTMLDialogElement>;
+  @ViewChild('removeDialog') removeDialog!: ElementRef<HTMLDialogElement>;
   ngOnInit() {
     const param=this.activeRoute.snapshot.paramMap.get('id');
     this.id= param!=null?+param:null;
     if(this.id!=null){
-      this.studenteService.getStudenteById(this.id).subscribe({
-        next:()=>console.log(this.studente())
-      })
+      this.studenteService.getStudenteById(this.id).subscribe()
     }
     this.corsoService.getAllCorsi().subscribe({
       next:c=>{
@@ -67,18 +64,30 @@ export class InfoStudenteComponent implements OnInit {
     this.dialog.open(UpStudenteComponent,{data:this.studente()});
   }
 
-  dialogCorsi(){
-    this.dialogRef.nativeElement.showModal();
+  openAddDialog(){
+    this.addDialog.nativeElement.showModal();
   }
 
-  closeDialog(){
-    this.dialogRef.nativeElement.close();
+  closeAddDialog(){
+    this.addDialog.nativeElement.close();
   }
 
+  openRemoveDialog(){
+    this.removeDialog.nativeElement.showModal();
+  }
 
-  onSubmit(){
+  closeRemoveDialog(){
+    this.removeDialog.nativeElement.close();
+  }
+
+  addCorso(){
     this.studenteService.addCorso(this.corso,this.studente()).subscribe({});
-    this.dialogRef.nativeElement.close();
+    this.addDialog.nativeElement.close();
+  }
+
+  removeCorso(){
+    this.studenteService.removeCorso(this.corso,this.studente()).subscribe({});
+    this.removeDialog.nativeElement.close();
   }
 
 

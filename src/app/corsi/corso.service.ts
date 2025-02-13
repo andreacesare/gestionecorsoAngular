@@ -2,6 +2,7 @@ import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Corso} from './corso.model';
 import {tap} from 'rxjs/operators';
+import {Studente} from '../studenti/studente.model';
 
 
 @Injectable({
@@ -47,6 +48,18 @@ export class CorsoService {
       })).subscribe(
         ()=>this.getAllCorsi().subscribe(c=>this.corsi.set(c))
       )}))
+  }
+
+  addStudente(corso:Corso,studente:Studente){
+    return this.http.post<Corso>('http://localhost:8080/corso/'+corso.id+'/addStudente/'+studente.id,studente).pipe(tap({
+      next:s=>this.corso.set(s)
+    }))
+  }
+
+  removeStudente(corso:Corso,studente:Studente){
+    return this.http.post<Corso>('http://localhost:8080/corso/'+corso.id+'/removeStudente/'+studente.id,studente).pipe(tap({
+      next:s=>this.corso.set(s)
+    }))
   }
 
 }

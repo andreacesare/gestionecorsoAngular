@@ -62,6 +62,11 @@ export class StudenteService {
       next:s=>this.studente.set(s)
     }))
   }
+  removeCorso(corso:Corso,studente:Studente){
+    return this.http.post<Studente>('http://localhost:8080/discente/'+studente.id+'/removeCorso/'+corso.id,corso).pipe(tap({
+      next:s=>this.studente.set(s)
+    }))
+  }
 
 
 }
