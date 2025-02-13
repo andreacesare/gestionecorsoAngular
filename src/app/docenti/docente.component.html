@@ -2,17 +2,25 @@
   <h1>Lista Docenti</h1>
   <button class="btn btn-primary rounded" (click)="openDialog()">Aggiungi Docente</button>
 </div>
-<div class="container-fluid mt-2">
-<table class="table table-bordered table-hover table-striped table-primary">
+<div class="container-fluid  mt-2">
+
+<table class="table table-bordered  table-hover table-striped table-primary">
+
   <thead class="table-dark">
   <tr>
-    <th>id</th>
+    <th colspan="3">
+      <input id="cercaDocente" type="text" class="form-control" placeholder="Cerca Docente..." [(ngModel)]="docCercato" (ngModelChange)="searchDocente()">
+    </th>
+  </tr>
+  <tr>
+    <th>id </th>
     <th>Nome</th>
     <th>Cognome</th>
   </tr>
+
   </thead>
   <tbody>
-    @for(docente of docenti();track docente.id){
+    @for(docente of docentiFiltrati();track docente.id){
     <tr [routerLink]="['/docenti','docente',docente.id]">
 
 
