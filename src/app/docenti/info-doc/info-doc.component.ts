@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import { Docente } from '../docente.model';
 import {DocenteService} from '../docente.service';
@@ -14,6 +14,7 @@ import {CorsoService} from '../../corsi/corso.service';
   templateUrl: './info-doc.component.html',
   styleUrl: './info-doc.component.css'
 })
+
 export class InfoDocComponent implements OnInit {
   private activeRoute=inject(ActivatedRoute);
   private route=inject(Router);

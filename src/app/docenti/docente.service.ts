@@ -1,5 +1,5 @@
 import {inject, Injectable, signal} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Docente} from './docente.model';
 import {Observable} from "rxjs";
 import { tap } from 'rxjs/operators';
@@ -49,5 +49,11 @@ export class DocenteService {
     return this.http.get<Docente>('http://localhost:8080/docente/getDocenteById/'+id).pipe(tap({
       next:d=>this.docente.set(d)
     }));
+  }
+
+  ricerca(text?:string){
+    let params=new HttpParams();
+    if(text){params=params.set('text',text);}
+    return this.http.get<Docente[]>("http://localhost:8080/docente/ricerca",{params});
   }
 }

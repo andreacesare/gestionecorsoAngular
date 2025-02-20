@@ -1,0 +1,63 @@
+<div class="container mt-3">
+  <h2>Cerca corsi</h2>
+</div>
+<div class="container mt-3">
+  <div class="row">
+  <div class="col">
+  <label for="nome" class=" form-label">Nome Corso</label>
+  <input id="nome" type="text" class="form-control" placeholder="cerca per nome..." [(ngModel)]="nome"/>
+</div>
+  <div class="col">
+  <label for="data" class=" form-label" >Data</label>
+  <input id="data" type="text" class="form-control" placeholder="cerca per data..." [(ngModel)]="data"/>
+</div>
+  </div>
+  <div class="row">
+  <div class="col">
+  <label for="durata" class="form-label">Durata</label>
+  <input id="durata" type="text" class="form-control" placeholder="cerca per durata..." [(ngModel)]="durata"/>
+</div>
+  <div class="col">
+    <label for="docente" class="form-label">Docente</label>
+    <input id="docente" type="text" class="form-control" placeholder="cerca per docente..." [(ngModel)]="docente"/>
+  </div>
+  </div>
+</div>
+
+<div class=" container mt-3">
+<button class="btn btn-secondary rounded me-3" (click)="onBack()">Indietro</button>
+<button class="btn btn-success rounded" (click)="searchCorso()">Cerca</button>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mt-4 p-3">
+
+
+</div>
+<div class="container-fluid mt-2">
+  <table class="table table-bordered table-hover table-striped table-primary">
+    <thead class="table-dark">
+    <tr>
+      <th>id</th>
+      <th>Nome</th>
+      <th>Data Inizio</th>
+      <th>Durata</th>
+      <th>ID Docente</th>
+    </tr>
+
+    </thead>
+    <tbody>
+      @for(corso of corsi();track corso.id){
+        <tr class="corso" [routerLink]="['/corsi','corso',corso.id]">
+
+
+          <td>{{corso.id}}</td>
+          <td>{{corso.nome}}</td>
+          <td>{{corso.data_inizio | date:'dd/MM/yyyy'}}</td>
+          <td>{{corso.durata}}</td>
+          <td>{{corso.docente.id}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+

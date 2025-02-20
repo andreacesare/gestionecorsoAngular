@@ -10,6 +10,7 @@ import {UpCorsoComponent} from '../up-corso/up-corso.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StudenteService} from '../../studenti/studente.service';
 import {Studente} from '../../studenti/studente.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-info-corso',
@@ -21,6 +22,7 @@ import {Studente} from '../../studenti/studente.model';
 export class InfoCorsoComponent implements OnInit {
   private activeRoute=inject(ActivatedRoute);
   private route=inject(Router);
+  private location=inject(Location);
   private corsoService=inject(CorsoService);
   private studenteService=inject(StudenteService);
   corso=this.corsoService.corso.asReadonly();
@@ -54,7 +56,7 @@ export class InfoCorsoComponent implements OnInit {
   }}
 
   onBack(){
-    this.route.navigate(['corsi']);
+    this.location.back();
   }
 
   openDialog(){

@@ -6,7 +6,7 @@ import {CorsoService} from './corso.service';
 import {MatDialog} from '@angular/material/dialog';
 import {NewCorsoComponent} from '../new-corso/new-corso.component';
 import {FormsModule} from '@angular/forms';
-import {Corso} from './corso.model';
+
 
 
 @Component({

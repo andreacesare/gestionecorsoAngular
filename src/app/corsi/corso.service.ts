@@ -1,5 +1,5 @@
 import {inject, Injectable, signal} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Corso} from './corso.model';
 import {tap} from 'rxjs/operators';
 import {Studente} from '../studenti/studente.model';
@@ -60,6 +60,17 @@ export class CorsoService {
     return this.http.post<Corso>('http://localhost:8080/corso/'+corso.id+'/removeStudente/'+studente.id,studente).pipe(tap({
       next:s=>this.corso.set(s)
     }))
+  }
+
+  ricerca(nome?:string,data?:string,durata?:string,docente?:string){
+    let params=new HttpParams();
+    if(nome) params=params.set('nome',nome);
+    if(data) params=params.set('data',data);
+    if(durata) params=params.set('durata',durata);
+    if(docente) params=params.set('docente',docente);
+    return this.http.get<Corso[]>("http://localhost:8080/corso/ricerca",{params});
+
+
   }
 
 }

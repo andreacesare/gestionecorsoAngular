@@ -14,14 +14,14 @@
       <th>id</th>
       <th>Nome</th>
       <th>Cognome</th>
-      <th>Matricola <input id="cercaMatricola" type="text" class="rounded" placeholder="Cerca matricola..." [(ngModel)]="matricola" (ngModelChange)="searchMatricola()" /></th>
+      <th>Matricola</th>
       <th>Data di Nascita</th>
     </tr>
 
     </thead>
     <tbody>
       @for(studente of studentiFiltrati();track studente.id){
-        <tr [routerLink]="['/studenti','studente',studente.id]">
+        <tr class="studente" [routerLink]="['/studenti','studente',studente.id]">
 
 
           <td>{{studente.id}}</td>
