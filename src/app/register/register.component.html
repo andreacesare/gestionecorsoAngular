@@ -1,0 +1,27 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <form #form="ngForm" (ngSubmit)="iscrivi(form)" class="p-4 border rounded shadow-lg bg-light" >
+    <h3 class="text-center mb-4">Registrazione</h3>
+    <div class="mb-3">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="username" required />
+    </div>
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input type="text" id="password" name="password" class="form-control" [(ngModel)]="password" required/>
+    </div>
+    <div class="mb-3">
+      <button type="submit"  class="btn btn-primary">Iscrivi</button>
+    </div>
+    <div class="mb-3">
+      <button type="button" (click)="onBack()"  class="btn btn-secondary">Indietro</button>
+    </div>
+
+    <div>
+      @if(message){<p class="text-success">{{message}}</p>}
+    </div>
+    <div>
+      @if(error){<p class="text-danger">{{error}}</p>}
+    </div>
+  </form>
+</div>
+

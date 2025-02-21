@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {RouterModule, RouterOutlet} from '@angular/router';
+import {Component, inject} from '@angular/core';
+import {Router, RouterModule, RouterOutlet} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {NgClass} from '@angular/common';
 
@@ -15,10 +15,12 @@ import {NgClass} from '@angular/common';
 })
 export class AppComponent {
   title = 'gestioneCorsoFE';
+  private route=inject(Router);
 
-  isActive:string=' ';
-
-  onClick(button:string){
-    this.isActive=button;
+  logout(){
+    this.route.navigate(['login']);
+    localStorage.removeItem('token');
   }
+
+
 }

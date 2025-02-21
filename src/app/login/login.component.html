@@ -1,0 +1,27 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <form #form="ngForm" (ngSubmit)="login(form)" class="p-4 border rounded shadow-lg bg-light" >
+    <h3 class="text-center mb-4">Accesso</h3>
+    <div class="mb-3">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" class="form-control" [(ngModel)]="username" required />
+    </div>
+    <div class="mb-3">
+    <label for="password">Password</label>
+    <input type="text" id="password" name="password" class="form-control" [(ngModel)]="password" required/>
+</div>
+    <div class="mb-3">
+    <button type="submit"  class="btn btn-primary">Accedi</button>
+</div>
+    <div class="mb-3">
+      <button type="button"  class="btn btn-success" routerLink="/register">Crea nuovo account</button>
+    </div>
+    <div>
+    @if(message){<p class="text-success">{{message}}</p>}
+</div>
+    <div>
+      @if(error){<p class="text-danger">{{error}}</p>}
+    </div>
+  </form>
+</div>
+
+
