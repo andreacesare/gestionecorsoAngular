@@ -17,28 +17,35 @@ export class RegisterComponent {
   password:string='';
   message='';
   error='';
+  showPassword=false;
 
-  iscrivi(form:NgForm){
+  iscrivi(form:NgForm) {
+    if (form.valid) {
+      this.loginService.register(this.username, this.password).subscribe({
+        next: () => {
+          this.message = 'Utente creato con successo';
+          form.resetForm();
+          setTimeout(() => {
+            this.message = '';
+            this.route.navigate(['login']);
+          }, 2000);
 
-    this.loginService.register(this.username,this.password).subscribe({
-      next:()=> {
-        this.message = 'Utente creato con successo';
-        form.resetForm();
-        setTimeout(()=>{
-          this.message = '';
-          this.route.navigate(['login']);
-        },2000);
 
+        },
+        error: () => {
+          this.error = 'Utente gia esistente';
+          form.resetForm();
+          setTimeout(() => {
+            this.error = '';
+          }, 2000)
+        }
+      });
 
-      },
-    error:()=>{
-        this.error='Utente gia esistente';
-        form.resetForm();
-        setTimeout(()=>{
-          this.error = '';
-        },2000)
     }
-    });
+  }
+
+  onShowPassword(){
+    this.showPassword=!this.showPassword;
   }
 
   onBack(){

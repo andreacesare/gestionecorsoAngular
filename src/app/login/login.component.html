@@ -3,11 +3,16 @@
     <h3 class="text-center mb-4">Accesso</h3>
     <div class="mb-3">
     <label for="username">Username</label>
-    <input type="text" id="username" name="username" class="form-control" [(ngModel)]="username" required />
+    <input type="text" id="username" name="username" class="form-control" placeholder="Inserisci username" [(ngModel)]="username" required />
     </div>
     <div class="mb-3">
     <label for="password">Password</label>
-    <input type="text" id="password" name="password" class="form-control" [(ngModel)]="password" required/>
+      <div class="input-group">
+    <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" class="form-control" placeholder="Inserisci password" [(ngModel)]="password"  required/>
+      <button type="button" class="btn btn-outline-secondary" (click)="onShowPassword()">
+        <i [class]="showPassword?'bi bi-eye-slash':'bi bi-eye'"></i>
+      </button>
+      </div>
 </div>
     <div class="mb-3">
     <button type="submit"  class="btn btn-primary">Accedi</button>

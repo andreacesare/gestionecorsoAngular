@@ -20,19 +20,9 @@ export class LoginComponent {
   password:string='';
   message='';
   error='';
+  showPassword=false;
 
-  iscrivi(form:NgForm){
 
-    this.loginService.register(this.username,this.password).subscribe({
-      next:()=> {
-        this.message = 'Utente creato con successo';
-        form.resetForm();
-        setTimeout(()=>{
-          this.message = '';
-        },3000)
-
-      }});
-  }
 
   login(form:NgForm){
   this.loginService.login(this.username,this.password).subscribe({
@@ -48,6 +38,10 @@ export class LoginComponent {
       setTimeout(()=>{this.error='';},2000);
     }
   });
+  }
+
+  onShowPassword(){
+    this.showPassword=!this.showPassword;
   }
 
 }

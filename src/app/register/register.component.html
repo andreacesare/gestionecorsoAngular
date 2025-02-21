@@ -3,12 +3,35 @@
     <h3 class="text-center mb-4">Registrazione</h3>
     <div class="mb-3">
       <label for="username">Username</label>
-      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="username" required />
+      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="username" required placeholder="Inserisci username" />
     </div>
     <div class="mb-3">
       <label for="password">Password</label>
-      <input type="text" id="password" name="password" class="form-control" [(ngModel)]="password" required/>
-    </div>
+      <div class="input-group">
+      <input [type]="showPassword?'text':'password'"
+             id="password" name="password" class="form-control"
+             [(ngModel)]="password"  placeholder="Inserisci password"
+             required
+             #passwordField="ngModel"
+             minlength="8"
+             maxlength="20"
+             pattern="(?=.*\d)(?=.*[a-z])(?=.*[\W_])(?=.*[A-Z]).{8,}"
+
+      />
+      <button type="button" class="btn btn-outline-secondary" (click)="onShowPassword()">
+       <i [class]="showPassword?'bi bi-eye-slash':'bi bi-eye'"></i>
+      </button>
+      </div>
+      </div>
+    @if(passwordField.invalid && passwordField.touched){
+      <p>La password deve contenere almeno:</p>
+      <ul>
+        <li>8 caratteri</li>
+        <li>Una lettera maiuscola</li>
+        <li>Una lettera minuscola</li>
+        <li>Un numero</li>
+        <li> Un carattere speciale (!#$%^&*...).</li>
+      </ul>}
     <div class="mb-3">
       <button type="submit"  class="btn btn-primary">Iscrivi</button>
     </div>
