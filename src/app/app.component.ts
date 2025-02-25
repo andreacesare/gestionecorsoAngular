@@ -18,9 +18,11 @@ export class AppComponent {
   private route=inject(Router);
 
   logout(){
+    const conferma=confirm('Sei sicuro di voler uscire?');
+    if(conferma){
     this.route.navigate(['login']);
     localStorage.removeItem('token');
-  }
+  }}
 
 
 }

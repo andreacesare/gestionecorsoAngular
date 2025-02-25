@@ -4,28 +4,28 @@
 
     <div class="mb-3">
       <label for="nome">NomeStudente</label>
-      <input id="nome" type="text" class="form-control" [(ngModel)]="upStudente().nome" name="nome" placeholder="Modifica Nome">
+      <input id="nome" type="text" class="form-control" [(ngModel)]="upStudente.nome" name="nome" [placeholder]="studente().nome">
     </div>
 
     <div class="mb-3">
       <label for="cognome">CognomeStudente</label>
-      <input id="cognome" type="text" class="form-control" [(ngModel)]="upStudente().cognome" name="cognome" placeholder="Modifica Cognome" >
+      <input id="cognome" type="text" class="form-control" [(ngModel)]="upStudente.cognome" name="cognome" [placeholder]="studente().cognome" >
     </div>
 
     <div class="mb-3">
       <label for="matricola">Matricola</label>
-      <input id="matricola" type="text" class="form-control" [(ngModel)]="upStudente().matricola" name="matricola" placeholder="Modifica Matricola" >
+      <input id="matricola" type="text" class="form-control" [(ngModel)]="upStudente.matricola" name="matricola" [placeholder]="studente().matricola" >
     </div>
 
     <div class="mb-3">
       <label for="data_nascita">Data di nascita</label>
-      <input id="data_nascita" type="date" class="form-control" [(ngModel)]="upStudente().data_nascita" name="data_nascita" placeholder="Modifica Data di Nascita" >
+      <input id="data_nascita" type="date" class="form-control" [(ngModel)]="upStudente.data_nascita" name="data_nascita" [placeholder]="studente().data_nascita" >
     </div>
 
 
     <div class="d-flex justify-content-between">
       <button type="submit" class="btn btn-primary">Modifica</button>
-      <button type="button" class="btn btn-secondary" (click)="onBack()">Indietro</button>
+      <button type="button" class="btn btn-secondary" (click)="onBack()">Annulla</button>
     </div>
   </form>
 </div>

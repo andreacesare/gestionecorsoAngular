@@ -1,15 +1,15 @@
 <div class="container mt-4">
-  <form #form="ngForm" (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-lg bg-light">
+  <form  (ngSubmit)="onSubmit()" class="p-4 border rounded shadow-lg bg-light">
     <h3 class="text-center mb-4">Modifica {{data.nome+" "+data.cognome}}</h3>
 
     <div class="mb-3">
       <label for="nome" class="form-label">Nome</label>
-      <input id="nome" type="text" class="form-control" [(ngModel)]="upDocente().nome" name="nome" placeholder="Modifica il nome" />
+      <input id="nome" type="text" class="form-control" [(ngModel)]="upDocente.nome" name="nome" [placeholder]="docente().nome"/>
     </div>
 
     <div class="mb-3">
       <label for="cognome" class="form-label">Cognome</label>
-      <input id="cognome" type="text" class="form-control" [(ngModel)]="upDocente().cognome" name="cognome"  placeholder="Modifica il cognome" />
+      <input id="cognome" type="text" class="form-control" [(ngModel)]="upDocente.cognome" name="cognome"  [placeholder]="docente().cognome" />
     </div>
 
     <div class="d-flex justify-content-between">

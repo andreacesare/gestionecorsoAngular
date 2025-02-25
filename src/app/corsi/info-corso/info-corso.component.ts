@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, OnInit, signal, ViewChild} from '@angular/core';
+import {Component, computed, ElementRef, inject, OnInit, signal, ViewChild} from '@angular/core';
 import {Corso} from '../corso.model';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 
@@ -27,7 +27,7 @@ export class InfoCorsoComponent implements OnInit {
   private studenteService=inject(StudenteService);
   corso=this.corsoService.corso.asReadonly();
   studenti=signal<Studente[]>([]);
-  studentiNonIscritti=signal<Studente[]>([]);
+  studentiNonIscritti= computed(()=>this.studenti().filter(s=>!this.corso().discenti.some(d=>d.id===s.id)));
   studente={} as Studente;
   idCorso:number | null=null;
   private dialog=inject(MatDialog);
@@ -42,7 +42,7 @@ export class InfoCorsoComponent implements OnInit {
     }
     this.studenteService.getAllStudenti().subscribe({
       next:s=>{ this.studenti.set(s);
-        this.studentiNonIscritti.set(this.studenti().filter(s=>!this.corso().discenti.some(d=>d.id===s.id)));
+
 
     }})
   }
@@ -60,10 +60,12 @@ export class InfoCorsoComponent implements OnInit {
   }
 
   openDialog(){
-    this.dialog.open(UpCorsoComponent,{data:this.corso()});
+    const dialogRef=this.dialog.open(UpCorsoComponent,{data:this.corso()});
+    dialogRef.afterClosed().subscribe(()=>this.ngOnInit());
   }
 
   openAddDialog(){
+    this.studente={} as Studente;
     this.dialogAdd.nativeElement.showModal();
   }
 

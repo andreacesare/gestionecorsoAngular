@@ -21,6 +21,7 @@ export class LoginComponent {
   message='';
   error='';
   showPassword=false;
+  time=1000*60*60*12;
 
 
 
@@ -30,7 +31,7 @@ export class LoginComponent {
       localStorage.setItem('token',r.token);
       this.message='Login Riuscito';
       form.resetForm();
-      setTimeout(()=>{this.route.navigate(['home'])},1500);
+      setTimeout(()=>{this.route.navigate(['home'])},1000);
     },
     error: () => {
       this.error = 'Credenziali errate';

@@ -5,22 +5,22 @@
 
     <div class="mb-3">
       <label for="nome" class="form-label">NomeCorso</label>
-      <input id="nome" type="text" class="form-control" [(ngModel)]="upCorso().nome" name="nome" placeholder="Modifica Nome" >
+      <input id="nome" type="text" class="form-control" [(ngModel)]="upCorso.nome" name="nome" [placeholder]="corso().nome" >
     </div>
 
     <div class="mb-4">
       <label for="data" class="form-label">Data</label>
-      <input id="data" type="date" class="form-control" [(ngModel)]="upCorso().data_inizio" name="data" placeholder="Modifica data d'inizio" >
+      <input id="data" type="date" class="form-control" [(ngModel)]="upCorso.data_inizio" name="data" [placeholder]="corso().data_inizio" >
     </div>
 
     <div class="mb-4">
       <label for="durata" class="form-label">Durata Mesi</label>
-      <input id="durata" type="text" class="form-control" [(ngModel)]="upCorso().durata" name="durata" placeholder="Modifica durata">
+      <input id="durata" type="text" class="form-control" [(ngModel)]="upCorso.durata" name="durata" [placeholder]="corso().durata">
     </div>
 
     <div class="mb-4">
       <label for="docente" class="form-label">Docente</label>
-      <select id="docente" class="form-control form-select" [(ngModel)]="upCorso().docente" name="docente">
+      <select id="docente" class="form-control form-select" [(ngModel)]="upCorso.docente" name="docente" >
 
         @for(docente of docenti();track docente.id){
           <option [ngValue]="docente">{{docente.nome+" "+docente.cognome}}</option>
@@ -33,7 +33,7 @@
 
     <div class="d-flex justify-content-between">
       <button type="submit" class="btn btn-primary">Modifica</button>
-      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Indietro</button>
+      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Annulla</button>
     </div>
   </form>
 </div>

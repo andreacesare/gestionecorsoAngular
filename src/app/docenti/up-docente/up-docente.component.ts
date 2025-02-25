@@ -15,15 +15,16 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog
 export class UpDocenteComponent implements OnInit{
   private route=inject(Router);
   private docenteService=inject(DocenteService);
-  upDocente = signal<Docente>({} as Docente);
+
   docente=this.docenteService.docente;
   private dialog=inject(MatDialogRef);
   public data=inject(MAT_DIALOG_DATA);
+  upDocente:Docente = this.data;
 
   ngOnInit(){}
 
   onSubmit(){
-      this.docenteService.updateDocente(this.upDocente(),this.docente().id).subscribe({
+      this.docenteService.updateDocente(this.upDocente,this.docente().id).subscribe({
         next:()=>{this.docenteService.getDocenteById(this.docente().id).subscribe(docente=>{this.docente.set(docente)});
         this.dialog.close();}
       });

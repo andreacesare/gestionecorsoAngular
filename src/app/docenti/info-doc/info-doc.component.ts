@@ -51,7 +51,8 @@ export class InfoDocComponent implements OnInit {
   }
 
   openDialog(){
-    this.dialog.open(UpDocenteComponent,{data:this.docente()});
+    const dialogRef=this.dialog.open(UpDocenteComponent,{data:this.docente()});
+    dialogRef.afterClosed().subscribe(()=>this.ngOnInit())
   }
 
 }

@@ -19,6 +19,7 @@ export class RegisterComponent {
   error='';
   showPassword=false;
 
+
   iscrivi(form:NgForm) {
     if (form.valid) {
       this.loginService.register(this.username, this.password).subscribe({
@@ -28,7 +29,7 @@ export class RegisterComponent {
           setTimeout(() => {
             this.message = '';
             this.route.navigate(['login']);
-          }, 2000);
+          }, 1000);
 
 
         },

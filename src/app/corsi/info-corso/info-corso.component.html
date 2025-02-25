@@ -12,11 +12,11 @@
     <div class="row mb-3">
       <p class="mb-1"><strong>Durata:</strong> {{ corso().durata }}</p>
     </div>
-    @if(corso().docente!=null){
+
     <div class="row mb-3">
-      <p class="mb-1"><strong>Docente:</strong> {{ corso().docente.nome+" "+corso().docente.cognome }}</p>
+      <p class="mb-1"><strong>Docente:</strong> @if(corso().docente!=null){{{ corso().docente.nome+" "+corso().docente.cognome }}}</p>
     </div>
-    }
+
     <div class="row mb-3">
       <p class="mb-1"><strong>Studenti:</strong></p>
       <ul class="list-group">
@@ -47,7 +47,7 @@
       <label for="studente" class="form-label">Studenti non iscritti</label>
       <select id="studente" class="form-control form-select" [(ngModel)]="studente" name="studente"   required>
         @for(studente of studentiNonIscritti();track studente.id){
-          <option [ngValue]="studente">{{studente.id+" "+studente.nome+" "+studente.cognome}}</option>
+          <option [ngValue]="studente">{{studente.nome+" "+studente.cognome}}</option>
         }
       </select>
     </div>
@@ -62,10 +62,10 @@
 <dialog #dialogRemove >
   <form (ngSubmit)="removeStudente()" class="p-4 border rounded shadow-lg bg-light">
     <div class="mb-4">
-      <label for="studente" class="form-label">Studenti iscritti</label>
-      <select id="studente2" class="form-control form-select" [(ngModel)]="studente" name="studente"   required>
+      <label for="studente2" class="form-label">Studenti iscritti</label>
+      <select id="studente2" class="form-control form-select" [(ngModel)]="studente" name="studente2"   required>
         @for(studente of corso().discenti;track studente.id){
-          <option [ngValue]="studente">{{studente.id+" "+studente.nome+" "+studente.cognome}}</option>
+          <option [ngValue]="studente">{{studente.nome+" "+studente.cognome}}</option>
         }
       </select>
     </div>

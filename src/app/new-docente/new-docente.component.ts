@@ -24,7 +24,7 @@ export class NewDocenteComponent  {
   onSubmit(form:NgForm){
     if(form.valid) {
       this.docenteService.saveDocente(this.newDocente()).subscribe();
-      this.dialogRef.close();
+      this.dialogRef.close(this.newDocente());
 
     }else{console.log('error bro')}
   }

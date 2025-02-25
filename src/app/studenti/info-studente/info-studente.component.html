@@ -21,7 +21,7 @@
       <ul class="list-group">
         @for (corso of studente().corsi; track corso.id)
         {
-          <li class="list-group-item">{{ corso.id+" "+corso.nome }}</li>
+          <li class="list-group-item">{{ corso.nome }}</li>
         }
       </ul>
     </div>
@@ -43,8 +43,8 @@
     <div class="mb-4">
       <label for="corso" class="form-label">Corsi Disponibili</label>
       <select id="corso" class="form-control form-select" [(ngModel)]="corso" name="docente"   required>
-        @for(corso of corsi();track corso.id){
-          <option [ngValue]="corso">{{corso.id+" "+corso.nome+" "+(corso.data_inizio | date:"dd/MM/yyyy")}}</option>
+        @for(corso of corsiNonSeguiti();track corso.id){
+          <option [ngValue]="corso">{{corso.nome}}</option>
         }
       </select>
     </div>
@@ -61,7 +61,7 @@
       <label for="corso2" class="form-label">Corsi Seguiti</label>
       <select id="corso2" class="form-control form-select" [(ngModel)]="corso" name="docente"   required>
         @for(corso of studente().corsi;track corso.id){
-          <option [ngValue]="corso">{{corso.id+" "+corso.nome+" "+(corso.data_inizio | date:"dd/MM/yyyy")}}</option>
+          <option [ngValue]="corso">{{corso.nome}}</option>
         }
       </select>
     </div>

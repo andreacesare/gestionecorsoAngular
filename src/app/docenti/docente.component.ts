@@ -44,7 +44,9 @@ export class DocenteComponent implements OnInit{
   }
 
   openDialog(){
-    this.dialog.open(NewDocenteComponent, {})
+
+    const dialogRef=this.dialog.open(NewDocenteComponent, {});
+    dialogRef.afterClosed().subscribe(()=>{ this.ngOnInit()});
   }
 
   searchDocente(){
