@@ -38,7 +38,7 @@ export class InfoCorsoComponent implements OnInit {
     const param=this.activeRoute.snapshot.paramMap.get('id');
     this.idCorso=param!=null?+param:null;
     if(this.idCorso!=null){
-      this.corsoService.getCorsoById(this.idCorso).subscribe()
+      this.corsoService.getCorsoById(this.idCorso).subscribe(()=>console.log(this.corso()));
     }
     this.studenteService.getAllStudenti().subscribe({
       next:s=>{ this.studenti.set(s);

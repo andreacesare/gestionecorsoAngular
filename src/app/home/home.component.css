@@ -1,9 +1,2 @@
 
 
-header img {
-  max-width: 50%;
-  height: auto; /* Mantiene le proporzioni dell'immagine */
-  display: block;
-  margin: 50px auto; /* Centra l'immagine */
-  padding: 50px;
-}
