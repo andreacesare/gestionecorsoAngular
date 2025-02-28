@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Docente} from './docente.model';
 import {debounceTime, switchMap} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-docente',
@@ -26,6 +27,7 @@ import {debounceTime, switchMap} from 'rxjs';
 export class DocenteComponent implements OnInit{
   private destroy=inject(DestroyRef);
   private docenteService=inject(DocenteService);
+  private snack=inject(MatSnackBar);
   docenti=signal<Docente[]>([]);
   docCercato='';
   docentiFiltrati=this.docenteService.docentiFiltrati;
@@ -40,6 +42,7 @@ export class DocenteComponent implements OnInit{
 
     this.searchControl.valueChanges.pipe(debounceTime(300),
       switchMap(text=>this.docenteService.ricerca(text || ''))).subscribe(r=>this.docenti.set(r));
+    this.snack.open("Prova snack bro",'ok',{duration:5000, horizontalPosition:'center',verticalPosition:'top'});
 
   }
 

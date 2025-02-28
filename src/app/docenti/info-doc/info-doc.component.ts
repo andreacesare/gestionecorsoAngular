@@ -30,9 +30,10 @@ export class InfoDocComponent implements OnInit {
     const param=this.activeRoute.snapshot.paramMap.get('id');
     this.idDocente=param!=null?+param:null;
     if(this.idDocente!=null){
-      this.docenteService.getDocenteById(this.idDocente).subscribe()
+      this.docenteService.getDocenteById(this.idDocente).subscribe(()=>console.log(this.docente().corsi))
 
     }
+
   }
 
   onDelete(docente:Docente){
